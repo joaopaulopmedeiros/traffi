@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "JmRZj/5CLpvyn0D2EcgUZqC00ICafg7hljNQ050U0T+mIoRmnfav55jUkBsO8NONckwsGDLKRtt9lkGVqha1PA==",
+  "dgSpecHash": "KVFc183chyUa5P/JW/HMfURi/9RBaE4ebOR5sTy8GWfupJc432yug+otlNPt8oo63egVc/X6F3pGwpx0pTAAsA==",
   "success": true,
   "projectFilePath": "C:\\Users\\medeirja\\source\\repos\\FileMigration\\WorkerService.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\medeirja\\.nuget\\packages\\awssdk.core\\3.7.5.10\\awssdk.core.3.7.5.10.nupkg.sha512",
+    "C:\\Users\\medeirja\\.nuget\\packages\\awssdk.s3\\3.7.7.8\\awssdk.s3.3.7.7.8.nupkg.sha512",
     "C:\\Users\\medeirja\\.nuget\\packages\\microsoft.extensions.configuration\\6.0.0\\microsoft.extensions.configuration.6.0.0.nupkg.sha512",
     "C:\\Users\\medeirja\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\6.0.0\\microsoft.extensions.configuration.abstractions.6.0.0.nupkg.sha512",
     "C:\\Users\\medeirja\\.nuget\\packages\\microsoft.extensions.configuration.binder\\6.0.0\\microsoft.extensions.configuration.binder.6.0.0.nupkg.sha512",

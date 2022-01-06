@@ -4,7 +4,7 @@ using FileMigration.WorkerService.Domain;
 IHost host = Host.CreateDefaultBuilder(args)
     .ConfigureServices(services =>
     {
-        services.AddTransient<ITransferFileService, SharepointS3TransferFileService>();
+        services.AddTransient<ITransferFileService, LocalDiskS3TransferFileService>();
         services.AddHostedService<Worker>();
     })
     .Build();

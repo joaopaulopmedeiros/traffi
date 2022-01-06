@@ -43,3 +43,6 @@ C:\Users\medeirja\source\repos\FileMigration\obj\Debug\net6.0\WorkerService.dll
 C:\Users\medeirja\source\repos\FileMigration\obj\Debug\net6.0\ref\WorkerService.dll
 C:\Users\medeirja\source\repos\FileMigration\obj\Debug\net6.0\WorkerService.pdb
 C:\Users\medeirja\source\repos\FileMigration\obj\Debug\net6.0\WorkerService.genruntimeconfig.cache
+C:\Users\medeirja\source\repos\FileMigration\obj\Debug\net6.0\WorkerService.csproj.AssemblyReference.cache
+C:\Users\medeirja\source\repos\FileMigration\bin\Debug\net6.0\AWSSDK.Core.dll
+C:\Users\medeirja\source\repos\FileMigration\bin\Debug\net6.0\AWSSDK.S3.dll

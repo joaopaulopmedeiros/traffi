@@ -8,11 +8,31 @@
     ".NETCoreApp,Version=v6.0": {
       "WorkerService/1.0.0": {
         "dependencies": {
+          "AWSSDK.S3": "3.7.7.8",
           "Microsoft.Extensions.Hosting": "6.0.0",
           "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": "1.14.0"
         },
         "runtime": {
           "WorkerService.dll": {}
+        }
+      },
+      "AWSSDK.Core/3.7.5.10": {
+        "runtime": {
+          "lib/netcoreapp3.1/AWSSDK.Core.dll": {
+            "assemblyVersion": "3.3.0.0",
+            "fileVersion": "3.7.5.10"
+          }
+        }
+      },
+      "AWSSDK.S3/3.7.7.8": {
+        "dependencies": {
+          "AWSSDK.Core": "3.7.5.10"
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/AWSSDK.S3.dll": {
+            "assemblyVersion": "3.3.0.0",
+            "fileVersion": "3.7.7.8"
+          }
         }
       },
       "Microsoft.Extensions.Configuration/6.0.0": {
@@ -400,6 +420,20 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "AWSSDK.Core/3.7.5.10": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-IVn27Zo+iTdEA1pbmEoCXwA5Tybnc/PAhEIHLKxaFWHPY9NdgtYfuvSLU0mKQ9YEUlBm897mVmfNeTyXvkRkbA==",
+      "path": "awssdk.core/3.7.5.10",
+      "hashPath": "awssdk.core.3.7.5.10.nupkg.sha512"
+    },
+    "AWSSDK.S3/3.7.7.8": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-cgjbOI+YYZyIF3S2LVmDpKFAL5fsaUQezKk/IV0SQOcsEIfRRdG6AaDZfkYkoGImx4dXrGsvsMnn0xWxO5JBQw==",
+      "path": "awssdk.s3/3.7.7.8",
+      "hashPath": "awssdk.s3.3.7.7.8.nupkg.sha512"
     },
     "Microsoft.Extensions.Configuration/6.0.0": {
       "type": "package",
