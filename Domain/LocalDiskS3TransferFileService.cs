@@ -23,8 +23,7 @@ namespace FileMigration.WorkerService.Domain
         }
 
         /// <summary>
-        /// Mapeia arquivos em diretório e sub-diretórios do disco local e
-        /// em sequência os envia para o S3
+        /// Map files from dirs and send them to S3
         /// </summary>
         /// <param name="bucketName"></param>
         /// <param name="filePath"></param>
@@ -93,7 +92,7 @@ namespace FileMigration.WorkerService.Domain
         }
 
         /// <summary>
-        /// Checa se há erro em credenciais
+        /// Check if error is caused by credentials
         /// </summary>
         /// <param name="amazonS3Exception"></param>
         /// <returns></returns>
