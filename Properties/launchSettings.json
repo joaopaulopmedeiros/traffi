@@ -3,7 +3,9 @@
     "FileMigration": {
       "commandName": "Project",
       "environmentVariables": {
-        "DOTNET_ENVIRONMENT": "Development"
+        "DOTNET_ENVIRONMENT": "Development",
+        "S3_BUCKET_NAME": "s3-bpm-etpr-historico-exemplo-dev",
+        "FILE_PATH": "C:\\example-files"
       },
       "dotnetRunMessages": true
     },

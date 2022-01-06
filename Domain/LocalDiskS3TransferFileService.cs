@@ -26,25 +26,30 @@ namespace FileMigration.WorkerService.Domain
         /// Mapeia arquivos em diretório e sub-diretórios do disco local e
         /// em sequência os envia para o S3
         /// </summary>
+        /// <param name="bucketName"></param>
+        /// <param name="filePath"></param>
         /// <param name="stoppingToken"></param>
         /// <returns></returns>
-        public async Task RunAsync(CancellationToken stoppingToken)
+        public async Task RunAsync
+        (
+            string bucketName, 
+            string filePath, 
+            CancellationToken stoppingToken
+        )
         {
             try
             {
-                string path = "C:\\example-files";
-
-                if (File.Exists(path))
+                if (File.Exists(filePath))
                 {
-                    await ProcessFileAsync(path);
+                    await ProcessFileAsync(bucketName, filePath);
                 }
-                else if (Directory.Exists(path))
+                else if (Directory.Exists(filePath))
                 {
-                    await ProcessDirectoryAsync(path);
+                    await ProcessDirectoryAsync(bucketName, filePath);
                 }
                 else
                 {
-                    _logger.LogError("{0} is not a valid file or directory.", path);
+                    _logger.LogError("{0} is not a valid file or directory.", filePath);
                 }
             } catch(Exception ex)
             {
@@ -52,18 +57,23 @@ namespace FileMigration.WorkerService.Domain
             }
         }
 
-        private async Task ProcessFileAsync(string path)
-        {
-            Console.WriteLine("Processed file '{0}'.", path);
-            
+        /// <summary>
+        /// Send file to S3
+        /// </summary>
+        /// <param name="bucketName"></param>
+        /// <param name="filePath"></param>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
+        private async Task ProcessFileAsync(string bucketName, string filePath)
+        {   
             var client = new AmazonS3Client(Amazon.RegionEndpoint.SAEast1);
 
             try
             {
                 PutObjectRequest putRequest = new PutObjectRequest
                 {
-                    BucketName = "s3-bpm-etpr-historico-exemplo-dev",
-                    FilePath = path,
+                    BucketName = bucketName,
+                    FilePath = filePath,
                     ContentType = "text/plain"
                 };
 
@@ -82,29 +92,39 @@ namespace FileMigration.WorkerService.Domain
             }
         }
 
-        private bool isCredentialError(AmazonS3Exception ex)
+        /// <summary>
+        /// Checa se há erro em credenciais
+        /// </summary>
+        /// <param name="amazonS3Exception"></param>
+        /// <returns></returns>
+        private bool isCredentialError(AmazonS3Exception amazonS3Exception)
         {
-            return ex.ErrorCode != null && 
-                (
-                    ex.ErrorCode.Equals("InvalidAccessKeyId") ||  
-                    ex.ErrorCode.Equals("InvalidSecurity")
-                );
+            return amazonS3Exception.ErrorCode != null &&
+                  (amazonS3Exception.ErrorCode.Equals("InvalidAccessKeyId")
+                  ||
+                  amazonS3Exception.ErrorCode.Equals("InvalidSecurity"));
         }
 
-        private async Task ProcessDirectoryAsync(string path)
+        /// <summary>
+        /// Map directories and get files to get processed
+        /// </summary>
+        /// <param name="bucket"></param>
+        /// <param name="filePath"></param>
+        /// <returns></returns>
+        private async Task ProcessDirectoryAsync(string bucketName, string filePath)
         {
-            string[] fileEntries = await Task.Run(() => Directory.GetFiles(path));
+            string[] fileEntries = await Task.Run(() => Directory.GetFiles(filePath));
 
             foreach (string fileName in fileEntries)
             {
-                await ProcessFileAsync(fileName);
+                await ProcessFileAsync(bucketName, fileName);
             }
 
-            string[] subdirectoryEntries = await Task.Run(() => Directory.GetDirectories(path));
+            string[] subdirectoryEntries = await Task.Run(() => Directory.GetDirectories(filePath));
             
             foreach (string subdirectory in subdirectoryEntries)
             {
-                await ProcessDirectoryAsync(subdirectory);
+                await ProcessDirectoryAsync(bucketName, subdirectory);
             }
         }
     }

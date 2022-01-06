@@ -15,10 +15,20 @@ namespace FileMigration.WorkerService
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
+            string? bucket = Environment.GetEnvironmentVariable("S3_BUCKET_NAME");
+            string? path = Environment.GetEnvironmentVariable("FILE_PATH");
+
             while (!stoppingToken.IsCancellationRequested)
             {
                 _logger.LogInformation("Worker running at: {time}", DateTimeOffset.Now);
-                await _service.RunAsync(stoppingToken);
+
+                if (!string.IsNullOrEmpty(bucket) && !string.IsNullOrEmpty(path))
+                {
+                    await _service.RunAsync(bucket, path, stoppingToken);
+                } else
+                {
+                    throw new Exception("Bucket name and file path must be provided");
+                }
             }
         }
     }

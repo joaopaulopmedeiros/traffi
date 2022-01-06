@@ -8,6 +8,6 @@ namespace FileMigration.WorkerService.Domain
 {
     public interface ITransferFileService
     {
-        public Task RunAsync(CancellationToken stoppingToken);
+        public Task RunAsync(string bucketName, string filePath, CancellationToken stoppingToken);
     }
 }
